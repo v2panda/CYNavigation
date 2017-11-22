@@ -28,7 +28,7 @@
         return [[UIPanGestureRecognizer alloc]init];
     }; //全屏返回
     [CYNavigationConfig shared].transitionAnimationClass = NSClassFromString(@"HighlightTransitionAnimation");//凸显的过渡动画
-    
+//    [CYNavigationConfig shared].transitionAnimationClass = NSClassFromString(@"NormalTransitionAnimation");//平移的过渡动画
     ViewController *vc = [[ViewController alloc]init];
     vc.view.backgroundColor = [UIColor whiteColor];
     CYNavigationController *nav = [[CYNavigationController alloc]initWithRootViewController:vc];
