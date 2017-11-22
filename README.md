@@ -23,7 +23,7 @@
 
 ##### 方式1:CocoaPods安装
 ```
-pod 'CYNavigation'
+pod 'CYNavigation',:git=>'https://github.com/zhangchunyu2016/CYNavigation.git'
 ```
 
 
