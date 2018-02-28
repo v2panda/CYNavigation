@@ -10,6 +10,7 @@
 #define SELF_H   self.bounds.size.height
 #define SELF_W   self.bounds.size.width
 #define SCREEN_W [[UIScreen mainScreen]bounds].size.width
+#define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
 @implementation CustomNavigationButton
 + (instancetype)initWithType:(NSInteger)type{
@@ -70,10 +71,18 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat y = 15.0;
-    _title.frame = CGRectMake((SCREEN_W - SCREEN_W/1.5)/2, (SELF_H-20)/2+10, SCREEN_W/1.5, 20);
-    _leftBtn.frame = CGRectMake(y, (SELF_H-20)/2, 100, 40);
-    _rightBtn.frame = CGRectMake(SCREEN_W-100-y, (SELF_H-20)/2, 100, 40);
+    CGFloat x = 15.0;
+    CGFloat y = 0;
+    // 非iPhone X 20  iPhone X 44
+    if (StatusBarHeight > 20) {
+        y = (SELF_H-StatusBarHeight);
+    }else {
+        y = (SELF_H-StatusBarHeight)/2;
+    }
+    
+    _title.frame = CGRectMake((SCREEN_W - SCREEN_W/1.5)/2, y+10, SCREEN_W/1.5, 20);
+    _leftBtn.frame = CGRectMake(x, y, 100, 40);
+    _rightBtn.frame = CGRectMake(SCREEN_W-100-x, y, 100, 40);
     CGFloat height = [CYNavigationConfig shared].borderHeight;
     _border.path = [UIBezierPath bezierPathWithRect:CGRectMake(0,SELF_H-height,SELF_W,height)].CGPath;
 }
